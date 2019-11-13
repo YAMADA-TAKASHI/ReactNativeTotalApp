@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { 
+    View,
     FlatList,
+    StyleSheet,
  } from "react-native";
 import { 
     Container,
@@ -19,16 +21,22 @@ import {
     Thumbnail
  } from "native-base";
 
- type Props = {}
- export default class MainScreen extends Component<Props> {
+ export default class MainScreen extends Component {
      
      render() {
          return (
-             <Container>
-                <Content>
-                    <Text>AAA</Text>
-                </Content>
+             <Container style={styles.container}>
+                <Text>テンプレ</Text>
              </Container>
          )
      }
  }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})

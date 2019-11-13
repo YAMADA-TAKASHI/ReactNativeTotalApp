@@ -13,7 +13,7 @@ import MainScreen from "../screens/MainScreen";
 const Main = {
     screen: MainScreen,
     navigationOptions : ({ navigation }) => {
-        return {title: '__Template__'}
+        return {title: 'QR-Barcode'}
     },
 }
 
