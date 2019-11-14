@@ -3,7 +3,8 @@ import {
     View,
     FlatList,
     StyleSheet,
- } from "react-native";
+    Alert,
+} from "react-native";
 import { 
     Container,
     Header,
@@ -19,17 +20,33 @@ import {
     Icon,
     Switch,
     Thumbnail
- } from "native-base";
+} from "native-base";
+import QRCode from 'react-native-qrcode-image';
+import Barcode from "react-native-barcode-builder";
 
- export default class MainScreen extends Component {
+export default class MainScreen extends Component {
      
-     render() {
+    state = {
+      text: 'hoge'
+    }
+
+    render() {
          return (
-             <Container style={styles.container}>
-                <Text>テンプレ</Text>
-             </Container>
-         )
-     }
+            <View style={styles.container}>
+              <Text>Generate QR and barcode.</Text>
+              {/* <QRCode
+                value={this.state.text}
+                size={200}
+                bgColor='#000000'
+                fgColor='#FFFFFF'
+              /> */}
+              <Barcode value={this.state.text} format="CODE128" />
+              <Button
+                onPress={() => this.setState({text: 'foo'})}
+              />
+            </View>
+        )
+    }
  }
 
 const styles = StyleSheet.create({
