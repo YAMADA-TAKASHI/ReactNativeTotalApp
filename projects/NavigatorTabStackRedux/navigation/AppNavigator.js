@@ -1,32 +1,47 @@
-import { 
-    createAppContainer,
-    createBottomTabNavigator,
-} from "react-navigation";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from 'react-navigation-stack'
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import createStore from "../stores/createStore";
 
-import { 
-    createStackNavigator,
-} from "react-navigation-stack";
+//screens
+import HomeScreen from "../screens/HomeScreen";
+import AboutScreen from "../screens/AboutScreen";
+import SettingsScreen from "../screens/SettingsScreen";
 
-import MainScreen from "../screens/MainScreen";
+//store
+const store = createStore();
 
-//起動画面
-const Main = {
-    screen: MainScreen,
-    navigationOptions : ({ navigation }) => {
-        return {title: '__Template__'}
-    },
+//stack
+const Stack = createStackNavigator(
+  {
+      Home: HomeScreen,
+      About: AboutScreen,
+  },
+  {
+      initialRouteName: 'Home',
+  }
+);
+
+//tabs
+const Tabs = createBottomTabNavigator(
+  {
+    Top: Stack,
+    Settings: SettingsScreen
+  }
+);
+
+const AppContainer = createAppContainer(Tabs);
+
+//main
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    );
+  }
 }
-
-const MainNavigation = createStackNavigator(
-    {
-        Main,
-    },
-    {
-        mode: 'card',
-        //headerMode: 'none',
-        initialRouteName: 'Main',
-    }
-)
-
-export default AppNavigator = createAppContainer(MainNavigation)
-
